@@ -41,7 +41,7 @@ public class frm_calificaciones extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -136,11 +136,11 @@ public class frm_calificaciones extends javax.swing.JFrame {
                                     .addComponent(txt_fecha)
                                     .addComponent(txt_seguimiento)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(btn_consultar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(182, 182, 182)
                         .addComponent(btn_guardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_consultar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_cancelar)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -186,7 +186,7 @@ public class frm_calificaciones extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         lbl_definitiva.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        lbl_definitiva.setText("  ._.");
+        lbl_definitiva.setText(">:v");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -232,7 +232,27 @@ public class frm_calificaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultarActionPerformed
-        // TODO add your handling code here:
+        bln_sw = false;
+        int_posicion = 0;
+        for (int i = 0; i < obj_calificaciones.size(); i++){
+            if(txt_codigo.getText().equals(obj_calificaciones.get(i).getStr_codigo())){
+                bln_sw = true;
+                int_posicion = 1;
+                break;
+            }
+        }
+        
+        if (bln_sw == false){
+            JOptionPane.showMessageDialog(null,"No se encontraron registros", "Consultar", JOptionPane.ERROR_MESSAGE );
+        }else{
+            txt_asignatura.setText(obj_calificaciones.get(int_posicion).getStr_asignatura());
+            txt_n1.setText(""+obj_calificaciones.get(int_posicion).getFlt_nota1());
+            txt_n2.setText(""+obj_calificaciones.get(int_posicion).getFlt_nota2());
+            txt_fecha.setText(""+obj_calificaciones.get(int_posicion).getStr_fecha());
+        }
+
+           
+        
     }//GEN-LAST:event_btn_consultarActionPerformed
     private void fnt_limpiar(){
         txt_asignatura.setText("");
